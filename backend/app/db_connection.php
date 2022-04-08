@@ -6,7 +6,7 @@
  $password = "examplepass";
  $db = "data";
  $conn = mysqli_connect($servername, $username, $password, $db, $port);
- 
+
 // // Create connection
 //   if (!$conn) {
 //     echo 'connection error: ' . mysqli_connect_error();

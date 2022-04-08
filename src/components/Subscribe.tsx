@@ -5,11 +5,12 @@ interface SubscribeProps {
 
     setEmail: React.Dispatch<React.SetStateAction<string>>
     setPassword: React.Dispatch<React.SetStateAction<string>>,
+    setIsType: React.Dispatch<React.SetStateAction<string>>,
     email: string,
     password: string
 }
 
-const Subscribe: React.FC<SubscribeProps> = ({setEmail, setPassword, email, password}) => {
+const Subscribe: React.FC<SubscribeProps> = ({setEmail, setPassword, email, password, setIsType}) => {
 
     const [newEmail, setNewEmail] = useState<string>('')
     const [newPassword, setNewPassword] = useState<string>('')
@@ -27,6 +28,7 @@ const Subscribe: React.FC<SubscribeProps> = ({setEmail, setPassword, email, pass
         e.preventDefault()
         setEmail(newEmail)
         setPassword(newPassword)
+        setIsType('register')
         console.log(email, password)
     }
 

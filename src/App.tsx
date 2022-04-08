@@ -6,19 +6,21 @@ const App: React.FC= () => {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [isValid, setIsValid] = useState<boolean>(true)
+  const [type, setIsType] = useState<string>('')
 
+  const data = new URLSearchParams({
+    username: email,
+    password: password,
+    type: type
+  })
 
-  useEffect(() => {
+  const headers = new Headers({
+    'Authorization': `Basic ${btoa(`${email} ${password}`)}`,
+    'Content-Type': 'application/x-www-form-urlencoded'
+  })
 
-    const data = new URLSearchParams({
-      username: email,
-      password: password
-    })
-
-    const headers = new Headers({
-      'Authorization': `Basic ${btoa(`${email} ${password}`)}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    })
+  const response = () => {
 
     fetch('http://localhost:2345/', {
       method: 'POST',
@@ -28,14 +30,25 @@ const App: React.FC= () => {
       mode: 'cors',
     }
   ).then(res => res.json())
-  .then(data => console.log(data));
-  }, [email])
+  .then(data => 
+    console.log(data)
+    // setIsValid(false)
+    ).catch(error => console.log(error));
+  }
+
+  useEffect(() => {
+
+    response()
+
+  }, [email, password])
 
 
 
   return (
     <div className="App">
-      <Subscribe setEmail={setEmail} setPassword={setPassword} email={email} password={password} />
+      {isValid && (
+      <Subscribe setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} />
+      )}
     </div>
   );
 }
