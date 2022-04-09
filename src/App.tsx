@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Login from './components/Login';
 import Subscribe from './components/Subscribe';
 
-const App: React.FC= () => {
 
+const App: React.FC = () => {
+
+  // REGISTER
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(true)
   const [type, setIsType] = useState<string>('')
+  const [token, setToken] = useState<any>()
+
 
   const data = new URLSearchParams({
     username: email,
@@ -16,7 +21,7 @@ const App: React.FC= () => {
   })
 
   const headers = new Headers({
-    'Authorization': `Basic ${btoa(`${email} ${password}`)}`,
+    'Authorization': `Basic ${btoa(`${email}:${password}`)}`,
     'Content-Type': 'application/x-www-form-urlencoded'
   })
 
@@ -29,26 +34,31 @@ const App: React.FC= () => {
       body: data,
       mode: 'cors',
     }
-  ).then(res => res.json())
-  .then(data => 
+  ).then(res => res.text()).then(data => 
     console.log(data)
-    // setIsValid(false)
-    ).catch(error => console.log(error));
+    // setToken(data)
+    )
+    .catch(error => console.log(error));
+
+
   }
+  
 
   useEffect(() => {
 
     response()
+    // setTimeout(() => {
+    //   console.log([...token])
+    // }, 1000)
 
-  }, [email, password])
+  }, [email])
 
 
 
   return (
     <div className="App">
-      {isValid && (
-      <Subscribe setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} />
-      )}
+      <Subscribe setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} type={type} />
+      {/* <Login setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} /> */}
     </div>
   );
 }
