@@ -17,18 +17,17 @@ const Subscribe: React.FC<SubscribeProps> = ({setEmail, setPassword, email, pass
     const [newPassword, setNewPassword] = useState<string>('')
 
     const newEmailHandler = (e: any) => {
-
         setNewEmail(e.target.value)
     }
     const newPasswordHandler = (e: any) => {
-
-        setNewPassword(e.target.value)
+            setNewPassword(e.target.value)
     }
 
     const submitHandler = (e: any) => {
         e.preventDefault()
         setEmail(newEmail)
         setPassword(newPassword)
+
         setIsType('register')
         console.log(email, password)
         console.log(type)

@@ -41,6 +41,7 @@ if ($_POST["type"] == 'register') {
     }
 }
 
+
 // if ($_POST["type"] == 'login') {
 
 //     $usernamePw = mysqli_query($conn, "SELECT * FROM users WHERE username = '".$_POST['username']."' AND '".$_POST['password']."'");
