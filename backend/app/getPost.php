@@ -16,7 +16,7 @@ header('Access-Control-Allow-Credentials: true');
     }
     $sql = mysqli_query($conn ,"SELECT * FROM users");
     $result = mysqli_fetch_assoc($sql);
-    json_encode(['hey' => "ho"]);
+    json_encode($result);
     return $result;
 ?>
 

@@ -27,9 +27,7 @@ const PostsList: React.FC = () => {
         <>
         <h1>Hey</h1>
         {articles.map((article: any) => (
-
             <Post title={article.titre} content={article.content}  />
-
         ))}
         </>
     )

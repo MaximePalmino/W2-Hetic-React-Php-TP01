@@ -57,14 +57,8 @@ const App: React.FC = () => {
   useEffect(() => {
   response()
     console.log(isValid)
-  }, [email, password])
+  }, [email, password] || [title])
 
-
-  useEffect(() => {
-    response()
-
-    console.log(type)
-  }, [title])
 
   useEffect(() => {
     axios.get('http://localhost:2345/getPost.php')
@@ -72,16 +66,10 @@ const App: React.FC = () => {
     .catch(err => console.log(err))
   })
 
-  //   fetch('http://localhost:2345/writePost.php')
-  //   .then(response => response.json())
-  //   .then(data => console.log(data));  
-    
-  // })
   return (
 
 
     <div className="App">
-  
       <Subscribe setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} type={type} />
       <Login setEmail={setEmail} setPassword={setPassword} email={email} password={password} setIsType={setIsType} />
       <WritePost setTitle={setTitle} setContent={setContent} setIsType={setIsType} />
