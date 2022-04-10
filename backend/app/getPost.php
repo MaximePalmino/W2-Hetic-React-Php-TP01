@@ -14,7 +14,7 @@ header('Access-Control-Allow-Credentials: true');
     if(!$conn){
         die("could not connect to server!");
     }
-    $sql = mysqli_query($conn ,"SELECT * FROM users");
+    $sql = mysqli_query($conn ,"SELECT * FROM posts");
     $result = mysqli_fetch_assoc($sql);
     json_encode($result);
     return $result;
